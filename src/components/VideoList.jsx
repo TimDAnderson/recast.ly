@@ -1,14 +1,28 @@
-import exampleVideoData from './data/exampleVideoData.js';
+import exampleVideoData from '../data/exampleVideoData.js';
+import VideoListEntry from './VideoListEntry.js';
+
+
+//video list is the container of all videos present
+
+//video player is the main video and is apart of the list
 
 //trying to figure out how the data from our example data is being
 //passed into video list entry which gets passed into video list
 //which then gets rendered/passed to the dom
 
-//
+//thanks for the help
 
 
+var VideoList = (props) => (
+  <div className="video-list">
+    {props.videos.map(videos =>
+      <VideoListEntry video={videos}
+        key = {videos.id.videoId} />
+    )}
+  </div>
+);
 
-// var VideoList = () => (
+// var VideoList = (props) => (
 //   <div className="video-list">
 //     <div><h5><em>videoListEntry</em> view goes here</h5></div>
 //     <div><h5><em>videoListEntry</em> view goes here</h5></div>
@@ -18,31 +32,6 @@ import exampleVideoData from './data/exampleVideoData.js';
 //   </div>
 // );
 
-// class VideoListItem extends React.Component {
-//   constructor(props) {
-//     super(props);
-//   };
-
-//   render() {
-
-//     return (
-//       <div><h5><em>{this.props.}</em> view goes here</h5></div>
-//     )
-
-//   }
-
-
-//   <div className="video-list">
-//     <div><h5><em>videoListEntry</em> view goes here</h5></div>
-//     <div><h5><em>videoListEntry</em> view goes here</h5></div>
-//     <div><h5><em>videoListEntry</em> view goes here</h5></div>
-//     <div><h5><em>videoListEntry</em> view goes here</h5></div>
-//     <div><h5><em>videoListEntry</em> view goes here</h5></div>
-//   </div>
-// );
-
-//this will do the mapping
-// var VideoList
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
