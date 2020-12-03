@@ -1,7 +1,5 @@
-
-
 var VideoListEntry = (props) => { //(
-  console.log(props);
+  //console.log(props);
   return (
   <div className="video-list-entry media">
     <div className="media-left media-middle">
@@ -12,7 +10,7 @@ var VideoListEntry = (props) => { //(
       <div className="video-list-entry-detail">{props.video.snippet.description}</div>
     </div>
   </div>
-); 
+);
 };
 
 
