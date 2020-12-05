@@ -12,25 +12,27 @@ import VideoListEntry from './VideoListEntry.js';
 
 //thanks for the help
 
+// conditional rendering
 
 var VideoList = (props) => (
+
+  // if (props.videos.length === 0) {
+  //   return <h2>loading page</h2>;
+  // }
+
+
   <div className="video-list">
     {props.videos.map(videos =>
       <VideoListEntry videoSwitch={props.videoSwitch} video={videos}
         key = {videos.id.videoId} />
     )}
   </div>
+
 );
 
-// var VideoList = (props) => (
-//   <div className="video-list">
-//     <div><h5><em>videoListEntry</em> view goes here</h5></div>
-//     <div><h5><em>videoListEntry</em> view goes here</h5></div>
-//     <div><h5><em>videoListEntry</em> view goes here</h5></div>
-//     <div><h5><em>videoListEntry</em> view goes here</h5></div>
-//     <div><h5><em>videoListEntry</em> view goes here</h5></div>
-//   </div>
-// );
+
+
+
 
 
 // PropTypes tell other developers what `props` a component expects
@@ -42,3 +44,4 @@ VideoList.propTypes = {
 // In the ES6 spec, files are "modules" and do not share a top-level scope.
 // `var` declarations will only exist globally where explicitly defined.
 export default VideoList;
+

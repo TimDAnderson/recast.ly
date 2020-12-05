@@ -1,5 +1,11 @@
 var VideoPlayer = (props) => {
-console.log(props);
+//console.log(props);
+
+// conditional rendering
+
+if (!props.video) {
+  return <h2>loading page</h2>;
+}
 
 return (
   <div className="video-player">
@@ -23,3 +29,4 @@ VideoPlayer.propTypes = {
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
 export default VideoPlayer;
+

@@ -2,23 +2,20 @@ import exampleVideoData from '../data/exampleVideoData.js';
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
 import Search from './Search.js';
-import searchYouTube from '../lib/searchYouTube.js';
+import YOUTUBE_API_KEY from '../config/youtube.js';
+
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
+    //console.log('here are the props', props);
     this.videoSwitch = this.videoSwitch.bind(this);
     this.state = {
       videoArray: [],
       currentVideo: exampleVideoData[0]
     };
   }
-
-  // componentDidMount() {
-  //   this.searchYouTube;
-  // }
-
 
 
   videoSwitch (video) {
@@ -28,7 +25,31 @@ class App extends React.Component {
     });
   }
 
+  componentDidMount() {
+    console.log(this.props);
+
+    var options = {
+      key: YOUTUBE_API_KEY,
+      query: 'dog',
+      max: 5
+    };
+
+    var successCB = (data)=>{   
+      //array of objects
+      this.setState({
+        currentVideo: data[0],
+        videoArray: data
+      });
+    };
+
+    this.props.searchYouTube(options, successCB);
+  }
+
+
   render() {
+    // if (this.state.videoArray.length === 0) {
+    //   return <h2>loading page</h2>;
+    // }
     return (
     <div>
       <nav className="navbar">
