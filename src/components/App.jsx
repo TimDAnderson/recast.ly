@@ -5,17 +5,22 @@ import Search from './Search.js';
 import YOUTUBE_API_KEY from '../config/youtube.js';
 
 
+
+
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     //console.log('here are the props', props);
     this.videoSwitch = this.videoSwitch.bind(this);
+    this.getYouTubeVideos = _.debounce(this.getYouTubeVideos.bind(this), 500);
     this.state = {
       videoArray: [],
       currentVideo: exampleVideoData[0]
     };
   }
+
+  
 
 
   videoSwitch (video) {
@@ -25,8 +30,28 @@ class App extends React.Component {
     });
   }
 
+  getYouTubeVideos(query) {
+    var options = {
+      key: YOUTUBE_API_KEY,
+      query: query,
+      max: 5
+    };
+
+    var successCB = (data)=>{   
+      //array of objects
+      this.setState({
+        currentVideo: data[0],
+        videoArray: data
+      });
+    };
+
+
+    
+    this.props.searchYouTube(options, successCB);
+  }
+
   componentDidMount() {
-    console.log(this.props);
+    //console.log(this.props);
 
     var options = {
       key: YOUTUBE_API_KEY,
@@ -54,7 +79,7 @@ class App extends React.Component {
     <div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
-          <Search />
+          <Search handleSearchInputChange={this.getYouTubeVideos.bind(this)} />
         </div>
       </nav>
       <div className="row">
